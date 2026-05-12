@@ -1,246 +1,201 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { Mail, Phone, MapPin, Send, Mic, MicOff } from "lucide-react"
+import { Mail, Download, ArrowRight } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function ContactSection() {
-  const [isRecording, setIsRecording] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "Project inquiry",
     message: "",
   })
+
   const { toast } = useToast()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const mailtoLink = `mailto:bharghavjb02@gmail.com?subject=${encodeURIComponent(
+      formData.subject
+    )}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    )}`
+
+    window.location.href = mailtoLink
 
     toast({
-      title: "Message sent! 🚀",
-      description: "Thanks for reaching out. I'll get back to you soon!",
+      title: "Email composer opened",
+      description: "Your message is ready to send through your email client.",
     })
-
-    setFormData({ name: "", email: "", message: "" })
-  }
-
-  const toggleRecording = () => {
-    setIsRecording(!isRecording)
-    if (!isRecording) {
-      toast({
-        title: "Voice input activated 🎤",
-        description: "Speak your message and I'll transcribe it for you!",
-      })
-    }
   }
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section
+      id="contact"
+      className="py-24 bg-gradient-to-b from-blue-50/50 to-white"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 liquid-gradient font-sora">Let's Connect</h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss how we can create something amazing together.
+          <p className="premium-label">Get In Touch</p>
+
+          <h2 className="mt-4 text-4xl lg:text-5xl font-bold tracking-tight text-black">
+            Let's Connect & Collaborate
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-black/70">
+            Interested in discussing AI-driven manufacturing,
+            automotive innovation, or intelligent production systems?
+            Let's talk.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
+        {/* Main Grid */}
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_0.6fr]">
+
+          {/* Left Side - Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ duration: 0.9 }}
+            className="premium-card p-10"
           >
-            <Card className="glass-morphism border-white/20">
-              <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">💬 Send a Message</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Input
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                      required
-                    />
-                  </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
 
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                      required
-                    />
-                  </div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                required
+                className="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
 
-                  <div className="relative">
-                    <Textarea
-                      placeholder="Your Message"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="glass-morphism border-white/20 text-white placeholder:text-white/50 min-h-32"
-                      required
-                    />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                required
+                className="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
 
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={toggleRecording}
-                      className={`absolute top-2 right-2 ${
-                        isRecording ? "text-red-400 animate-pulse" : "text-white/60"
-                      }`}
-                    >
-                      {isRecording ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
-                    </Button>
-                  </div>
+              <input
+                type="text"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
+                required
+                className="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
 
-                  <Button
-                    type="submit"
-                    className="w-full glass-morphism border-cyan-400 text-cyan-400 hover:bg-cyan-400/20 hover:animate-glow"
-                    size="lg"
-                  >
-                    <Send className="mr-2 h-5 w-5" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+              <textarea
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+                required
+                className="min-h-[220px] w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-black placeholder-black/40 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
+
+              <button
+                type="submit"
+                className="premium-button-primary inline-flex items-center gap-2"
+              >
+                Send Email
+                <ArrowRight className="h-4 w-4" />
+              </button>
+
+            </form>
           </motion.div>
 
-          {/* Contact Info & AI Assistant */}
+          {/* Right Side */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ duration: 0.9 }}
             className="space-y-6"
           >
-            {/* Contact Information */}
-            <Card className="glass-morphism border-white/20">
-              <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">📞 Get in Touch</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-cyan-400" />
-                  <span className="text-white/80">bharghavjb02@gmail.com</span>
+
+            {/* Contact Info */}
+            <div className="premium-card p-8">
+
+              <div className="mb-6">
+                <h3 className="text-black flex items-center gap-3 text-lg font-semibold">
+                  <Mail className="h-5 w-5 accent-text" />
+                  Let's Connect
+                </h3>
+              </div>
+
+              <div className="space-y-4 text-black/70">
+
+                <p className="leading-relaxed">
+                  I'm always interested in discussing AI-driven manufacturing,
+                  automotive innovation, and intelligent production systems.
+                </p>
+
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-4">
+                  <p className="text-sm font-semibold accent-text mb-1">
+                    Email
+                  </p>
+
+                  <p className="font-semibold text-black">
+                    bharghavjb02@gmail.com
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-green-400" />
-                  <span className="text-white/80">+49 15510861379</span>
+                <div className="rounded-lg border border-black/10 bg-black/2 p-4">
+                  <p className="text-sm font-semibold text-black/50 mb-1">
+                    LinkedIn
+                  </p>
+
+                  <a
+                    href="https://linkedin.com/in/bharghav-janapareddi-15a574181"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold accent-text hover:text-blue-700 inline-flex items-center gap-1"
+                  >
+                    Connect on LinkedIn
+                  </a>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-purple-400" />
-                  <span className="text-white/80">Kothmaissling 37, 93413 Cham, Germany</span>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* AI Assistant */}
-            <Card className="glass-morphism border-white/20">
-              <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">🤖 AI Assistant</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 flex items-center justify-center text-sm">
-                      AI
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white/80 text-sm">
-                        Hi! I'm Bhargav's AI assistant. I can help answer questions about his experience, schedule
-                        meetings, or provide project details. What would you like to know?
-                      </p>
-                    </div>
-                  </div>
+            {/* Resume Download Card */}
+            <div className="premium-card p-8 text-center">
 
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary" className="bg-white/10 text-white cursor-pointer hover:bg-white/20">
-                      Tell me about Bhargav's experience
-                    </Badge>
-                    <Badge variant="secondary" className="bg-white/10 text-white cursor-pointer hover:bg-white/20">
-                      What technologies does he use?
-                    </Badge>
-                    <Badge variant="secondary" className="bg-white/10 text-white cursor-pointer hover:bg-white/20">
-                      Discuss digital production systems
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              <a
+                href="/Bharghav-Janapareddi-Resume.pdf"
+                download
+                className="premium-button-accent inline-flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download Resume
+              </a>
 
-            {/* Social Links */}
-            <Card className="glass-morphism border-white/20">
-              <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">🌐 Connect Online</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { name: "GitHub", icon: "🐙", color: "hover:text-gray-400", href: "https://github.com/your-github" },
-                    { name: "LinkedIn", icon: "💼", color: "hover:text-blue-400", href: "https://linkedin.com/in/bharghav-janapareddi-15a574181" },
-                    { name: "Email", icon: "✉️", color: "hover:text-cyan-400", href: "mailto:bharghavjb02@gmail.com" },
-                    { name: "Resume", icon: "📄", color: "hover:text-purple-400", href: "#" },
-                  ].map((social) => (
-                    <motion.a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`flex items-center gap-2 p-3 rounded-lg glass-morphism border border-white/10 text-white/80 transition-colors ${social.color}`}
-                    >
-                      <span className="text-lg">{social.icon}</span>
-                      <span>{social.name}</span>
-                    </motion.a>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            </div>
+
           </motion.div>
         </div>
-
-        {/* Footer */}
-        <motion.footer
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-20 pt-8 border-t border-white/10 text-center"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-white/60">© 2026 Bhargav Janapareddi. Crafted with engineering precision and intelligent systems.</div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse" />
-              <span className="text-white/40 text-sm">Powered by Next.js & Three.js</span>
-            </div>
-          </div>
-        </motion.footer>
       </div>
     </section>
   )

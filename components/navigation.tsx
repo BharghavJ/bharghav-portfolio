@@ -2,14 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun, Menu, X } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Menu, X } from "lucide-react"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,78 +17,58 @@ export default function Navigation() {
   }, [])
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
+    { name: "Journey", href: "#journey" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Blog", href: "#blog" },
     { name: "Contact", href: "#contact" },
   ]
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-morphism" : "bg-transparent"
+      className={`sticky top-0 z-50 transition-all duration-500 ${
+        scrolled ? "glass-minimal shadow-[0_2px_12px_rgba(0,0,0,0.06)]" : "bg-white/50 backdrop-blur-none"
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div whileHover={{ scale: 1.05 }} className="text-2xl font-bold liquid-gradient font-sora">
-            Bhargav Janapareddi
-          </motion.div>
+      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+        <motion.div whileHover={{ scale: 1.02 }} className="text-sm font-semibold tracking-tight text-black">
+          Bharghav Janapareddi
+        </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                whileHover={{ scale: 1.1 }}
-                className="text-white/80 hover:text-cyan-400 transition-colors"
-              >
-                {item.name}
-              </motion.a>
-            ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="text-white hover:text-cyan-400"
+        <div className="hidden md:flex items-center gap-8 text-sm">
+          {navItems.map((item) => (
+            <motion.a
+              key={item.name}
+              href={item.href}
+              className="text-black/70 transition-colors hover:text-black"
+              whileHover={{ scale: 1.05 }}
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="text-white">
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+              {item.name}
+            </motion.a>
+          ))}
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-4 glass-morphism rounded-lg p-4"
-          >
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-black md:hidden"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {isOpen && (
+        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="border-t border-black/5">
+          <div className="space-y-1 px-6 py-4">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-2 text-white/80 hover:text-cyan-400 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
+              <a key={item.name} href={item.href} className="block rounded-lg px-3 py-2 text-sm text-black/70 hover:text-black hover:bg-black/5" onClick={() => setIsOpen(false)}>
                 {item.name}
               </a>
             ))}
-          </motion.div>
-        )}
-      </div>
+          </div>
+        </motion.div>
+      )}
     </motion.nav>
   )
 }

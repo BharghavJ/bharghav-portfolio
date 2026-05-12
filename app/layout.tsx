@@ -9,16 +9,16 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora" })
 
 export const metadata: Metadata = {
-  title: "Bhargav Janapareddi — Automotive Design Engineer & AI for Production",
-  description: "Automotive design engineer and AI-driven production specialist building intelligent manufacturing systems.",
-  keywords: ["automotive", "AI", "digital production", "manufacturing", "product design", "CAD", "manufacturing systems"],
-  authors: [{ name: "Bhargav Janapareddi" }],
+  title: "Bharghav Janapareddi | Automotive Design Engineer & AI for Digital Production",
+  description: "Premium portfolio of an automotive design engineer and AI-driven production specialist.",
+  keywords: ["automotive engineering", "AI", "digital production", "manufacturing", "CAD", "BIW", "DFMEA"],
+  authors: [{ name: "Bharghav Janapareddi" }],
   openGraph: {
-    title: "Bhargav Janapareddi — Automotive Design Engineer & AI for Production",
-    description: "Automotive design engineer and AI-driven production specialist building intelligent manufacturing systems.",
+    title: "Bharghav Janapareddi | Automotive Design Engineer & AI for Digital Production",
+    description: "Premium portfolio of an automotive design engineer and AI-driven production specialist.",
     type: "website",
   },
-    generator: 'senotron'
+  generator: "senotron",
 }
 
 export default function RootLayout({
@@ -28,8 +28,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${sora.variable} font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+      <body className={`${inter.variable} ${sora.variable} font-sans antialiased bg-slate-50 text-slate-950`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
         </ThemeProvider>

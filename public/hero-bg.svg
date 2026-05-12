@@ -1,0 +1,210 @@
+<svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080">
+  <defs>
+    <!-- Base Gradient Background -->
+    <linearGradient id="mainBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#0f2340;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#1a3a52;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1f2d;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Light overlay gradient -->
+    <linearGradient id="lightOverlay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Blue glow gradient -->
+    <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#0066ff;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Cyan glow gradient -->
+    <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#00aaff;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Purple glow for AI elements -->
+    <radialGradient id="purpleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Grid pattern -->
+    <pattern id="gridPattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#0099ff" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Stronger glow for nodes -->
+    <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1920" height="1080" fill="url(#mainBg)"/>
+
+  <!-- Left side: Manufacturing/Industrial scene -->
+  <g opacity="0.4">
+    <!-- Industrial structure outline -->
+    <rect x="50" y="150" width="400" height="500" fill="none" stroke="#0099ff" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Factory elements -->
+    <line x1="100" y1="200" x2="400" y2="200" stroke="#0099ff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="100" y1="300" x2="400" y2="300" stroke="#0099ff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="100" y1="400" x2="400" y2="400" stroke="#0099ff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="100" y1="500" x2="400" y2="500" stroke="#0099ff" stroke-width="1.5" opacity="0.5"/>
+    
+    <!-- Vertical lines -->
+    <line x1="150" y1="150" x2="150" y2="650" stroke="#0099ff" stroke-width="1" opacity="0.4"/>
+    <line x1="250" y1="150" x2="250" y2="650" stroke="#0099ff" stroke-width="1" opacity="0.4"/>
+    <line x1="350" y1="150" x2="350" y2="650" stroke="#0099ff" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Left side: Robot arm visualization -->
+  <g opacity="0.5">
+    <!-- Arm segments -->
+    <line x1="150" y1="250" x2="250" y2="320" stroke="#00d4ff" stroke-width="3" opacity="0.8" stroke-linecap="round"/>
+    <line x1="250" y1="320" x2="320" y2="380" stroke="#00d4ff" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+    <line x1="320" y1="380" x2="350" y2="450" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
+    
+    <!-- Joints -->
+    <circle cx="150" cy="250" r="6" fill="#00ffff" opacity="0.8" filter="url(#strongGlow)"/>
+    <circle cx="250" cy="320" r="5" fill="#00d4ff" opacity="0.8" filter="url(#strongGlow)"/>
+    <circle cx="320" cy="380" r="4" fill="#0099ff" opacity="0.7" filter="url(#glow)"/>
+    <circle cx="350" cy="450" r="3" fill="#0099ff" opacity="0.6"/>
+  </g>
+
+  <!-- Center: Holographic AI Brain -->
+  <g opacity="0.7" filter="url(#strongGlow)">
+    <!-- Brain outline -->
+    <circle cx="960" cy="400" r="80" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.8"/>
+    <circle cx="960" cy="400" r="60" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="960" cy="400" r="40" fill="none" stroke="#0099ff" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Brain lobes suggestion -->
+    <ellipse cx="930" cy="370" rx="25" ry="35" fill="none" stroke="#00ffff" stroke-width="1.5" opacity="0.7"/>
+    <ellipse cx="990" cy="370" rx="25" ry="35" fill="none" stroke="#00ffff" stroke-width="1.5" opacity="0.7"/>
+    
+    <!-- Center glow -->
+    <circle cx="960" cy="400" r="30" fill="url(#cyanGlow)"/>
+    
+    <!-- Neural connections radiating -->
+    <line x1="960" y1="400" x2="1080" y2="320" stroke="#00ffff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="960" y1="400" x2="1080" y2="480" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="960" y1="400" x2="840" y2="320" stroke="#00ffff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="960" y1="400" x2="840" y2="480" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>
+    <line x1="960" y1="400" x2="960" y2="280" stroke="#0099ff" stroke-width="1" opacity="0.5"/>
+    <line x1="960" y1="400" x2="960" y2="520" stroke="#0099ff" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- Neural network nodes around AI brain -->
+  <g opacity="0.6">
+    <circle cx="1080" cy="320" r="6" fill="#00ffff" filter="url(#strongGlow)"/>
+    <circle cx="1080" cy="480" r="6" fill="#00d4ff" filter="url(#strongGlow)"/>
+    <circle cx="840" cy="320" r="6" fill="#00ffff" filter="url(#strongGlow)"/>
+    <circle cx="840" cy="480" r="6" fill="#00d4ff" filter="url(#strongGlow)"/>
+    <circle cx="960" cy="280" r="5" fill="#0099ff" filter="url(#glow)"/>
+    <circle cx="960" cy="520" r="5" fill="#0099ff" filter="url(#glow)"/>
+  </g>
+
+  <!-- Right side: Digital Dashboard Elements -->
+  <g opacity="0.5" stroke="#00d4ff" stroke-width="1.5">
+    <!-- Top dashboard panel -->
+    <rect x="1400" y="100" width="450" height="250" fill="none" stroke="#0099ff" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Dashboard bars -->
+    <line x1="1420" y1="200" x2="1420" y2="100" stroke="#00ffff" stroke-width="3" opacity="0.7"/>
+    <line x1="1470" y1="180" x2="1470" y2="100" stroke="#00d4ff" stroke-width="3" opacity="0.6"/>
+    <line x1="1520" y1="220" x2="1520" y2="100" stroke="#0099ff" stroke-width="3" opacity="0.5"/>
+    <line x1="1570" y1="160" x2="1570" y2="100" stroke="#00ffff" stroke-width="3" opacity="0.6"/>
+    <line x1="1620" y1="200" x2="1620" y2="100" stroke="#00d4ff" stroke-width="3" opacity="0.5"/>
+    <line x1="1670" y1="150" x2="1670" y2="100" stroke="#0099ff" stroke-width="3" opacity="0.4"/>
+    <line x1="1720" y1="210" x2="1720" y2="100" stroke="#00ffff" stroke-width="3" opacity="0.5"/>
+    
+    <!-- Data points on dashboard -->
+    <circle cx="1420" cy="100" r="4" fill="#00ffff" opacity="0.8"/>
+    <circle cx="1470" cy="100" r="4" fill="#00d4ff" opacity="0.7"/>
+    <circle cx="1520" cy="100" r="4" fill="#0099ff" opacity="0.6"/>
+    <circle cx="1570" cy="100" r="4" fill="#00ffff" opacity="0.7"/>
+    <circle cx="1620" cy="100" r="4" fill="#00d4ff" opacity="0.6"/>
+    <circle cx="1670" cy="100" r="4" fill="#0099ff" opacity="0.5"/>
+    <circle cx="1720" cy="100" r="4" fill="#00ffff" opacity="0.6"/>
+  </g>
+
+  <!-- Right bottom: Tech circuits -->
+  <g opacity="0.4" stroke="#0099ff" stroke-width="1.5">
+    <!-- Circuit paths -->
+    <path d="M 1450 750 L 1550 750 L 1550 850 L 1650 850" fill="none" opacity="0.6"/>
+    <path d="M 1500 800 L 1600 800 L 1600 900 L 1700 900" fill="none" opacity="0.5"/>
+    <path d="M 1550 700 L 1650 700 L 1650 800" fill="none" opacity="0.4"/>
+    
+    <!-- Circuit nodes -->
+    <circle cx="1450" cy="750" r="4" fill="#00ffff" opacity="0.7"/>
+    <circle cx="1550" cy="750" r="3" fill="#00d4ff" opacity="0.6"/>
+    <circle cx="1550" cy="850" r="3" fill="#0099ff" opacity="0.5"/>
+    <circle cx="1650" cy="850" r="4" fill="#00ffff" opacity="0.6"/>
+    
+    <circle cx="1500" cy="800" r="3" fill="#00d4ff" opacity="0.6"/>
+    <circle cx="1600" cy="800" r="3" fill="#0099ff" opacity="0.5"/>
+    <circle cx="1600" cy="900" r="4" fill="#00ffff" opacity="0.6"/>
+    <circle cx="1700" cy="900" r="3" fill="#00d4ff" opacity="0.5"/>
+    
+    <circle cx="1550" cy="700" r="3" fill="#0099ff" opacity="0.5"/>
+    <circle cx="1650" cy="700" r="4" fill="#00ffff" opacity="0.6"/>
+    <circle cx="1650" cy="800" r="3" fill="#00d4ff" opacity="0.5"/>
+  </g>
+
+  <!-- Manufacturing process indicator on left -->
+  <g opacity="0.45">
+    <text x="100" y="750" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00ffff" opacity="0.7">PRODUCTION LINE</text>
+    
+    <!-- Process dots -->
+    <circle cx="120" cy="800" r="5" fill="#00ffff" opacity="0.8" filter="url(#glow)"/>
+    <circle cx="200" cy="800" r="5" fill="#00d4ff" opacity="0.6"/>
+    <circle cx="280" cy="800" r="5" fill="#0099ff" opacity="0.5"/>
+    <circle cx="360" cy="800" r="5" fill="#006699" opacity="0.4"/>
+    
+    <!-- Connecting lines -->
+    <line x1="125" y1="800" x2="195" y2="800" stroke="#0099ff" stroke-width="2" opacity="0.5"/>
+    <line x1="205" y1="800" x2="275" y2="800" stroke="#0099ff" stroke-width="2" opacity="0.4"/>
+    <line x1="285" y1="800" x2="355" y2="800" stroke="#0099ff" stroke-width="2" opacity="0.3"/>
+  </g>
+
+  <!-- Scanning lines effect (horizontal) -->
+  <g opacity="0.08" stroke="#00ffff" stroke-width="1">
+    <line x1="0" y1="150" x2="1920" y2="150"/>
+    <line x1="0" y1="300" x2="1920" y2="300"/>
+    <line x1="0" y1="450" x2="1920" y2="450"/>
+    <line x1="0" y1="600" x2="1920" y2="600"/>
+    <line x1="0" y1="750" x2="1920" y2="750"/>
+    <line x1="0" y1="900" x2="1920" y2="900"/>
+  </g>
+
+  <!-- Top glow area -->
+  <ellipse cx="960" cy="200" rx="600" ry="300" fill="url(#blueGlow)" opacity="0.5"/>
+
+  <!-- Bottom glow area -->
+  <ellipse cx="960" cy="950" rx="500" ry="200" fill="url(#cyanGlow)" opacity="0.3"/>
+
+  <!-- Light overlay for depth -->
+  <rect width="1920" height="1080" fill="url(#lightOverlay)"/>
+
+  <!-- Vignette effect -->
+  <rect width="1920" height="1080" fill="none" stroke="#000000" stroke-width="80" fill-opacity="0" opacity="0.3"/>
+</svg>
